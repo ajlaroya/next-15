@@ -1,4 +1,6 @@
+import { Star } from "lucide-react";
 import SearchForm from "../../components/SearchForm";
+import StartupCard from "@/components/StartupCard";
 
 export default async function Home({
   searchParams,
@@ -7,8 +9,19 @@ export default async function Home({
 }) {
   const query = (await searchParams).query || "";
 
-  const posts = [];
-  // 1:57:45
+  const posts = [
+    {
+      _createdAt: new Date(),
+      views: 55,
+      author: { _id: 1, name: "Arthur" },
+      _id: 1,
+      description: "This is a description",
+      image:
+        "https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      category: "Robots",
+      title: "We Robots",
+    },
+  ];
 
   return (
     <>
@@ -30,7 +43,11 @@ export default async function Home({
         </p>
 
         <ul className="mt-7 card_grid">
-
+          {posts?.length > 0 ? (
+            posts.map((post: StartupCardType, index: number) => <StartupCard key={post?._id} post={post} />)
+          ) : (
+            <p className="no-results">No startups found</p>
+          )}
         </ul>
       </section>
     </>
