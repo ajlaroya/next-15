@@ -176,5 +176,3 @@ const StartupForm = () => {
 };
 
 export default StartupForm;
-
-// 4:34:05
