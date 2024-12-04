@@ -1,10 +1,8 @@
 import { defineField, defineType } from "sanity";
 
-// 5:03:05
-
 export const playlist = defineType({
-  name: "startup",
-  title: "Startup",
+  name: "playlist",
+  title: "Playlist",
   type: "document",
   fields: [
     defineField({
@@ -19,32 +17,9 @@ export const playlist = defineType({
       },
     }),
     defineField({
-      name: "author",
-      type: "reference",
-      to: { type: "author" },
-    }),
-    defineField({
-      name: "views",
-      type: "number",
-    }),
-    defineField({
-      name: "description",
-      type: "text",
-    }),
-    defineField({
-      name: "category",
-      type: "string",
-      validation: (Rule) =>
-        Rule.min(1).max(20).required().error("Category is required"),
-    }),
-    defineField({
-      name: "image",
-      type: "url",
-      validation: (Rule) => Rule.required().error("Image is required"),
-    }),
-    defineField({
-      name: "pitch",
-      type: "markdown",
+      name: "select",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "startup" }] }],
     }),
   ],
 });
